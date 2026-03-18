@@ -23,7 +23,7 @@ export const Lotomania = () => {
         setConcurso(data.concurso);
         setDate(data.data);
         setNextValue(
-          data.valorAcumuladoProximoConcurso.toLocaleString('pt-BR', {
+          data.valorEstimadoProximoConcurso.toLocaleString('pt-BR', {
             style: 'currency',
             currency: 'BRL',
           }),

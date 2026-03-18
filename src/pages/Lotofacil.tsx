@@ -24,7 +24,7 @@ export const Lotofacil = () => {
         setConcurso(data.concurso);
         setDate(data.data);
         setNextValue(
-          data.valorAcumuladoProximoConcurso.toLocaleString('pt-BR', {
+          data.valorEstimadoProximoConcurso.toLocaleString('pt-BR', {
             style: 'currency',
             currency: 'BRL',
           }),

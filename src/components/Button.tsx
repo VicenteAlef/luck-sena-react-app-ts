@@ -12,8 +12,8 @@ const Button: React.FC<ButtonProps> = ({ children, className, ...props }) => {
     <button
       {...props}
       className={`
-        bg-cyan-600 
-        hover:bg-cyan-700 
+        bg-cyan-800 
+        hover:bg-cyan-900 
         transition-colors 
         cursor-pointer
         p-2 

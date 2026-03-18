@@ -11,7 +11,7 @@ export const Title2 = ({ children }: { children: string }) => {
 
 export const Ball = ({ children }: { children: string }) => {
   return (
-    <div className="w-12 h-12 shrink-0 flex items-center justify-center bg-cyan-600 rounded-full text-2xl text-white font-bold">
+    <div className="w-10 sm:w-12  h-10 sm:h-12 shrink-0 flex items-center justify-center bg-cyan-600 rounded-full sm:text-2xl text-white font-bold">
       {children}
     </div>
   );
