@@ -1,62 +1,76 @@
-import { useState } from "react";
+import React, { useState } from 'react';
+import { X } from 'lucide-react';
 
 interface ModalProps {
   children: React.ReactNode;
   title: string;
   labelButton?: string;
+  isOpen?: boolean;
+  onClose?: () => void;
 }
 
-export default function Modal({ children, title, labelButton }: ModalProps) {
-  const [isOpen, setIsOpen] = useState(true);
+export default function Modal({
+  children,
+  title,
+  labelButton,
+  isOpen: controlledIsOpen,
+  onClose: controlledOnClose,
+}: ModalProps) {
+  const [internalIsOpen, setInternalIsOpen] = useState(true);
 
-  if (!isOpen) {
+  const isModalOpen =
+    controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
+
+  if (!isModalOpen) {
     return null;
   }
 
   const handleClose = () => {
-    setIsOpen(false);
+    if (controlledOnClose) {
+      controlledOnClose();
+    } else {
+      setInternalIsOpen(false);
+    }
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 transition-opacity duration-300">
-      {/* Container principal do modal com animação de entrada. */}
-      <div className="relative w-full max-w-md p-6 mx-4 bg-white rounded-lg shadow-xl transform transition-all duration-300 ease-in-out scale-100">
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/75 backdrop-blur-sm animate-in fade-in duration-200"
+    >
+      <div className="relative w-full max-w-lg p-6 bg-white dark:bg-slate-900 rounded-lg shadow-2xl border border-slate-200 dark:border-slate-800 transform transition-all text-slate-800 dark:text-slate-200">
         {/* Cabeçalho do Modal */}
-        <div className="flex items-start justify-between pb-4 border-b rounded-t border-gray-200">
-          <h3 className="text-xl font-semibold text-gray-900">
-            {title || "Título Padrão"}
+        <div className="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
+          <h3
+            id="modal-title"
+            className="text-xl font-black text-slate-900 dark:text-white tracking-tight"
+          >
+            {title || 'Informação'}
           </h3>
           <button
             type="button"
-            className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center cursor-pointer"
+            className="p-1.5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
             onClick={handleClose}
             aria-label="Fechar modal"
           >
-            <svg
-              className="w-5 h-5"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              ></path>
-            </svg>
+            <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Corpo do Modal - aqui o conteúdo de 'children' é renderizado. */}
-        <div className="py-6 space-y-4">{children}</div>
+        {/* Corpo do Modal */}
+        <div className="py-5 space-y-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+          {children}
+        </div>
 
-        {/* Rodapé do Modal com o botão 'Concordo'. */}
+        {/* Rodapé do Modal */}
         {labelButton && (
-          <div className="flex items-center justify-end pt-4 border-t border-gray-200 rounded-b">
+          <div className="flex items-center justify-end pt-4 border-t border-slate-200 dark:border-slate-800">
             <button
               onClick={handleClose}
               type="button"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center cursor-pointer"
+              className="px-5 py-2.5 rounded-md font-bold text-sm text-white bg-emerald-600 hover:bg-emerald-500 shadow-md shadow-emerald-600/20 active:scale-95 transition-all cursor-pointer"
             >
               {labelButton}
             </button>

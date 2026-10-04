@@ -1,1 +1,35 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-carter: "Carter One", system-ui, cursive, sans-serif;
+  --font-raleway: "Raleway", system-ui, sans-serif;
+  --font-heading: "Raleway", system-ui, sans-serif;
+}
+
+/* Marca LuckSena em Carter One */
+.carter-one-regular {
+  font-family: "Carter One", system-ui, cursive, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.font-carter {
+  font-family: "Carter One", system-ui, cursive, sans-serif;
+}
+
+.font-raleway {
+  font-family: "Raleway", system-ui, sans-serif;
+}
+
+/* Títulos do site com a fonte Raleway */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-heading,
+.font-title {
+  font-family: "Raleway", system-ui, sans-serif;
+}

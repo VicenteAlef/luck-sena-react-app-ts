@@ -18,7 +18,7 @@ const Button: React.FC<ButtonProps> = ({ children, className, ...props }) => {
         cursor-pointer
         p-2 
         px-6 
-        rounded-2xl 
+        rounded-md 
         text-white 
         mt-auto 
         h-11 

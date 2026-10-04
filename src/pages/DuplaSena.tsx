@@ -1,6 +1,6 @@
 import React from 'react';
 import { LotteryDetailView } from '../components/LotteryDetailView';
 
-export const Lotomania: React.FC = () => {
-  return <LotteryDetailView lotteryType="lotomania" />;
+export const DuplaSena: React.FC = () => {
+  return <LotteryDetailView lotteryType="duplasena" />;
 };

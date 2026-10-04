@@ -1,12 +1,31 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/icons8-clover-100.png" />
+    <link rel="icon" type="image/png" href="/icons8-clover-100.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LuckSena</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Carter+One&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <meta name="description" content="Resultados em tempo real de todas as Loterias Caixa (Mega-Sena, Lotofácil, Quina, Lotomania e mais) e gerador estatístico de palpites para suas apostas." />
+    <meta name="theme-color" content="#f8fafc" />
+    <title>LuckSena - Resultados das Loterias Caixa & Gerador de Palpites</title>
+    <script>
+      (function() {
+        try {
+          const theme = localStorage.getItem('lucksena_theme') || 'light';
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+            document.documentElement.style.colorScheme = 'dark';
+          } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.style.colorScheme = 'light';
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
-  <body>
+  <body class="bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased selection:bg-emerald-500 selection:text-white">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
